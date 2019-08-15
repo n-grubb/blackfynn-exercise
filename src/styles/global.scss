@@ -1,0 +1,63 @@
+html, 
+body {
+    font-size: 20px; /* reset to a better base unit for ems */
+    font-family: serif; 
+}
+
+#app {
+    display: grid;
+    grid-template: auto / 1fr;
+}
+
+.site-header {
+    grid-row: 1;
+    width: 100%;
+
+    h1{
+        margin: .5rem 0;
+    }
+}
+
+.searchbar {
+    grid-row: 2;
+}
+
+.user-listings {
+    grid-row: 3;
+    padding-top: .5em;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.user {
+    width: 100%;
+    border: 2px solid #e3e3e3;
+    border-radius: 4px;
+    margin-bottom: .5em;
+
+    display: grid;
+    grid-template: auto / 1fr 2fr;
+}
+
+.user-photo {
+    grid-column: 1;
+    width: 100%;
+    height: auto;
+}
+
+.user-details {
+    grid-column: 2;
+
+    padding: 0 1em;
+    font-size: .75em;
+
+    display: grid;
+    align-content: center;
+}
+
+.user-name {
+    margin-top: 0;
+}

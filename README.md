@@ -1,4 +1,5 @@
-# blackfynn
+# Blackfynn Coding Exercise
+Flexing some frontend coding chops and testing out Vue
 
 ## Project setup
 ```
