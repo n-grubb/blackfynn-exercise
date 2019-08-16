@@ -1,8 +1,10 @@
 <template>
+
   <form class="searchbar">
     <input v-model="search_string" v-on:keyup="filterUsers" type="text" class="search" placeholder="Type user name to filter results" />
     <p class="results"><span class="results-number">{{ results.length }}</span> Results</p>
   </form>
+
 </template>
 
 <script>
