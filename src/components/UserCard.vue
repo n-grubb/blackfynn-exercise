@@ -10,7 +10,7 @@
             </address> 
         </div>
     </article>
-    
+
 </template>
 
 <script>
@@ -35,19 +35,18 @@ export default {
         width: 100%;
         border: 2px solid #e3e3e3;
         border-radius: 4px;
-        margin-bottom: .5em;
+        margin-bottom: 1em;
 
         display: grid;
         grid-template: auto / 1fr 2fr;
 
         @media screen and (min-width: 650px) {
             width: 46%;
-            margin-right: .5em;
+            margin-right: 1em;
         }
 
         @media screen and (min-width: 1200px) {
-            width: 30%;
-            margin-right: .5em;
+            width: 31%;
         }
     }
 

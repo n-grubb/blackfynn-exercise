@@ -26,11 +26,15 @@ export default {
         padding: 1em;
         background-color: rgb(255, 0, 0, .25);
         border-radius: 4px;
-        margin-bottom: .5em;
+        margin-bottom: 1em;
 
         p {
             margin: 0;
             font-size: .75em;
+        }
+
+        @media screen and (min-width: 650px) {
+            margin-right: 2em;
         }
     }
 

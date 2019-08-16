@@ -39,7 +39,7 @@ export default {
 
 <style lang="scss">
     .user-listings {
-        padding-top: .5em;
+        padding-top: 1em;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;

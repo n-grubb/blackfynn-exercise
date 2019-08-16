@@ -2,11 +2,15 @@ html,
 body {
     font-size: 20px; /* reset to a better base unit for ems */
     font-family: serif; 
+    margin: 0;
+    padding: 0;
 }
+
 
 #app {
     display: grid;
     grid-template: auto / 1fr;
+    padding: 0 1rem;
 }
 
 .site-header {
