@@ -30,6 +30,7 @@ export default {
 
         p {
             margin: 0;
+            font-size: .75em;
         }
     }
 

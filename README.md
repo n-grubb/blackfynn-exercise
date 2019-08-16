@@ -1,6 +1,8 @@
 # Blackfynn Coding Exercise
 Flexing some frontend coding chops and testing out Vue
 
+A live demo can be found [here](https://gallant-hamilton-458be0.netlify.com)./ 
+
 ## Project setup
 ```
 yarn install
