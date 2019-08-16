@@ -8,6 +8,12 @@
     <SearchBar :results="results" @search-user-list="updateUserList"></SearchBar>
 
     <section class="user-listings">
+      
+      <ErrorMessage :display="show_error">
+        <p>No users found that match that search.<br /> Displaying all users.</p>
+      </ErrorMessage>
+
+      <Spinner :show_spinner="show_spinner"></Spinner>
             
       <article v-for="user in results" :key="user.login.uuid" class="user">
         <img class="user-photo" :src="user.picture.large" /> 
@@ -29,7 +35,10 @@
 
 <script>
 import SearchBar from './components/SearchBar.vue'
+import Spinner from './components/Spinner.vue'
+import ErrorMessage from './components/ErrorMessage.vue'
 
+// install axios to get this info on load.
 const dummy_data = [
   {"gender":"male","name":{"title":"mr","first":"lígio","last":"da cunha"},"location":{"street":"1904 rua carlos gomes","city":"mesquita","state":"maranhão","postcode":22826,"coordinates":{"latitude":"-77.5205","longitude":"-110.4235"},"timezone":{"offset":"+5:30","description":"Bombay, Calcutta, Madras, New Delhi"}},"email":"lígio.dacunha@example.com","login":{"uuid":"a4b32852-807d-4d73-bbbf-5eea8aa1514f","username":"sadzebra407","password":"poland","salt":"GcBZYBmB","md5":"26f389e9493a44f7cda66d3d6efe3f5c","sha1":"a72f280e777d1e5224997f1ca78a1ff285f72245","sha256":"9e89b78f9c5c40ea0a3aaf1685cf74a129659930542a0c373b58b1af717c16dc"},"dob":{"date":"1994-02-04T05:09:49Z","age":25},"registered":{"date":"2017-01-27T14:24:24Z","age":2},"phone":"(56) 6130-2960","cell":"(61) 8954-6398","id":{"name":"","value":null},"picture":{"large":"https://randomuser.me/api/portraits/men/66.jpg","medium":"https://randomuser.me/api/portraits/med/men/66.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/men/66.jpg"},"nat":"BR"},
   {"gender":"female","name":{"title":"miss","first":"ece","last":"hamzaoğlu"},"location":{"street":"1855 anafartalar cd","city":"diyarbakır","state":"kırıkkale","postcode":38344,"coordinates":{"latitude":"23.5168","longitude":"-156.2205"},"timezone":{"offset":"-12:00","description":"Eniwetok, Kwajalein"}},"email":"ece.hamzaoğlu@example.com","login":{"uuid":"a2ee86a6-fdeb-4670-8214-e561ebfe6ad4","username":"crazytiger980","password":"speed","salt":"yg5R84xQ","md5":"92700b110b56019583a70959cac59e44","sha1":"fd415f69b34ddc86967f2235abf70622d55b2bc1","sha256":"c4b81ae411adbf150807370e60e1122bccf7b490accd6187f998cd257a3193c7"},"dob":{"date":"1994-05-30T16:50:19Z","age":25},"registered":{"date":"2016-08-22T17:45:54Z","age":2},"phone":"(696)-950-9756","cell":"(511)-556-5368","id":{"name":"","value":null},"picture":{"large":"https://randomuser.me/api/portraits/women/9.jpg","medium":"https://randomuser.me/api/portraits/med/women/9.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/9.jpg"},"nat":"TR"},
@@ -39,18 +48,38 @@ const dummy_data = [
 export default {
   name: 'app',
   components: {
-    SearchBar
+    SearchBar,
+    Spinner,
+    ErrorMessage
   },
   data() {
     return {
       all_users: dummy_data,
-      results: dummy_data
+      results: dummy_data,
+      show_spinner: true,
+      show_error: false
     }
   },
   methods: {
+    
     updateUserList( search_string ) {
-      console.log('filtering users by string...', search_string );
+
+      // filter are users by full name
+      this.results = this.all_users.filter( user => {
+        var user_full_name = user.name.first + ' ' + user.name.last;
+        return user_full_name.includes(search_string);
+      } );
+
+      // show all users if there is no match, set an error flag to display message
+      if ( this.results.length < 1 ) {
+        this.results = this.all_users;
+        this.show_error = true;
+      } else {
+        this.show_error = false;
+      }
+
     }
+
   }
 }
 </script>
